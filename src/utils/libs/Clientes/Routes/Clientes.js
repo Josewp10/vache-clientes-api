@@ -59,8 +59,8 @@ router.post('/clientes', async (req, res) => {
       let cedula = req.params.cedula;
       let clientes = req.body;
   
-      await _bovinosController.editarBovino(bovinos, chapeta);
-      success(req, res, 'Bovino modificado', null, 200);
+      await _clientesController.editarCliente(clientes, cedula);
+      success(req, res, 'Cliente modificado', null, 200);
     } catch (error) {
         errorResponse(req, res, 'ERROR', error);
     }

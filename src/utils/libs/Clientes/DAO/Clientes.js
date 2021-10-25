@@ -25,7 +25,7 @@ async consultarCliente(cedula){
   };
   
 
-async guardarBovino(cliente) {
+async guardarCliente(cliente) {
     let sql = `INSERT INTO public."Clientes"(
         telefono, nombre, id_clientes, cedula, correo)
         VALUES ($1, $2, $3, $4, $5);`;
@@ -34,7 +34,7 @@ async guardarBovino(cliente) {
     return respuesta
 };
 
- async eliminarBovino(cedula) {
+ async eliminarCliente(cedula) {
     let sql = `DELETE FROM public."Clientes"
 	WHERE cedula=$1 ;`;    
     let respuesta = await _servicio.executeSQL(sql, [cedula]);
@@ -42,7 +42,7 @@ async guardarBovino(cliente) {
 };
   
 
- async editarBovino (cliente)  {
+ async editarcliente(cliente)  {
     let sql =
       `UPDATE public."Clientes"
       SET telefono=$1, nombre=$2, id_clientes=$3, cedula=$4, correo=$5

@@ -10,17 +10,17 @@ class ClientesDAO {
 async consultarClientes()  {    
     let sql = `SELECT telefono, nombre, id_clientes, cedula, correo
 	FROM public."Clientes";`;
-    let respuesta = await _servicio.executeSQL(sql);
+    let respuesta = await _servicio.ejecutarSQL(sql);
     return respuesta
 };
 
 
 
-async consultarCliente(cedula){   
+async consultarCliente(id_clientes){   
     let sql = `SELECT telefono, nombre, id_clientes, cedula, correo
-	FROM public."Clientes" where cedula=$1 ;`;
+	FROM public."Clientes" where id_clientes=$1 ;`;
       
-    let respuesta = await _servicio.executeSQL(sql, [cedula]);
+    let respuesta = await _servicio.ejecutarSQL(sql, [id_clientes]);
     return respuesta;
   };
   
@@ -30,14 +30,14 @@ async guardarCliente(cliente) {
         telefono, nombre, id_clientes, cedula, correo)
         VALUES ($1, $2, $3, $4, $5);`;
     let valores = [cliente.telefono, cliente.nombre, cliente.id_clientes, cliente.cedula,cliente.correo];
-    let respuesta = await _servicio.executeSQL(sql, valores);
+    let respuesta = await _servicio.ejecutarSQL(sql, valores);
     return respuesta
 };
 
- async eliminarCliente(cedula) {
+ async eliminarCliente(id_clientes) {
     let sql = `DELETE FROM public."Clientes"
-	WHERE cedula=$1 ;`;    
-    let respuesta = await _servicio.executeSQL(sql, [cedula]);
+	WHERE id_clientes=$1 ;`;    
+    let respuesta = await _servicio.ejecutarSQL(sql, [id_clientes]);
     return respuesta
 };
   
@@ -46,9 +46,9 @@ async guardarCliente(cliente) {
     let sql =
       `UPDATE public."Clientes"
       SET telefono=$1, nombre=$2, id_clientes=$3, cedula=$4, correo=$5
-      WHERE cedula=$6;`;
+      WHERE id_clientes=$6;`;
     let valores = [cliente.telefono, cliente.nombre, cliente.id_clientes, cliente.cedula,cliente.correo];
-     await _servicio.executeSQL(sql, valores);
+     await _servicio.ejecutarSQL(sql, valores);
    
   };
 }

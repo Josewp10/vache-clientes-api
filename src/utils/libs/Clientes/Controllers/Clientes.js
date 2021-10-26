@@ -13,7 +13,7 @@ class ClientesController {
             ok: false,
             mensaje: 'Ingrese la información del cliente'
         };
-    }else if(!cliente.cedula){
+    }else if(!cliente.id_clientes){
         throw{
             ok: false,
             mensaje: 'Ingrese la información del cliente'
@@ -27,9 +27,9 @@ class ClientesController {
       
     }
 
-    async consultarCliente(cedula){
+    async consultarCliente(id_clientes){
 
-        let resp = await _clientesDAO.consultarCliente(cedula);
+        let resp = await _clientesDAO.consultarCliente(id_clientes);
 
         switch (resp.rowCount ) {
             
@@ -51,11 +51,11 @@ class ClientesController {
   
     
 
-    async editarCliente(cliente,cedula){
-        if (cliente.cedula != cedula) {
+    async editarCliente(cliente,id_clientes){
+        if (cliente.id_clientes =! id_clientes) {
             throw {
               ok: false,
-              mensaje: "cedula del cliente  no corresponde al enviado",
+              mensaje: "el id del cliente no corresponde al enviado",
             };
           }
          await _clientesDAO.editarCliente(cliente);
